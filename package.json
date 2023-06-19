@@ -9,6 +9,9 @@
   },
   "author": "Worldspawn",
   "license": "ISC",
+  "bin": {
+    "gamestart": "bin/index.js"
+  },
   "dependencies": {
     "boxen": "^7.1.0",
     "readline-sync": "^1.4.10"

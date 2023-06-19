@@ -12,7 +12,7 @@ const mainMenu = (username) => {
             diceGameRules(username);
             break;
         case '2':
-            guessNumber(username);
+            guessNumberRules(username);
             break;
         case '3':
             madLibsGen();

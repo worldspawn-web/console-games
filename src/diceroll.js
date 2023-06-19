@@ -6,7 +6,10 @@ import mainMenu from '../bin/main.js';
 
 const diceGameRules = (username) => {
     console.clear();
-    console.log(boxen(`\nYou roll the dice first. AI rolls second.\nIf your overall score is higher - you won.\nIf you got a double - your score will be 2x multiplied.\n\nGood Luck, ${username}!`, {title: 'Dice Roll:', textAlignment: 'center', titleAlignment: 'center'}));
+    console.log(boxen(`\nYou roll the dice first. AI rolls second.\nIf your overall score is higher - you won.\nIf you got a double - your score will be 2x multiplied.\n\nGood Luck, ${username}!`, {title: 'Dice Roll', textAlignment: 'center', titleAlignment: 'center'}));
+    // TODO:
+    // make 'are you ready' thing a separate module
+    // use gamename as a parameter to specify next launch
     setTimeout(() => {
         if (readlineSync.keyInYN('Are you ready?')) {
             console.clear();

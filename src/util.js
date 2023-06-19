@@ -1,8 +1,8 @@
-const randomValue1x6 = () => Math.round(Math.random() * 6);
+const randomValue = (min, max) => Math.floor(min + Math.random() * (max - min + 1));
 
 const randomCubes = () => {
-    const cube1 = randomValue1x6();
-    const cube2 = randomValue1x6();
+    const cube1 = randomValue(1, 6);
+    const cube2 = randomValue(1, 6);
     let playerResult = cube1 + cube2;
     if (cube1 === cube2) {
         playerResult *= 2;

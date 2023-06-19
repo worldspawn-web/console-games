@@ -1,7 +1,7 @@
 import boxen from 'boxen';
 import readlineSync from 'readline-sync';
 
-import { diceRoll } from '../src/diceroll.js';
+import { diceGameRules } from '../src/diceroll.js';
 
 const mainMenu = (username) => {
     console.clear();
@@ -9,10 +9,10 @@ const mainMenu = (username) => {
     const userChoice = readlineSync.question(`\nWhat is your choice, ${username}?\n`);
     switch(userChoice) {
         case '1':
-            diceRoll(username);
+            diceGameRules(username);
             break;
         case '2':
-            guessNumber();
+            guessNumber(username);
             break;
         case '3':
             madLibsGen();

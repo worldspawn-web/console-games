@@ -1,4 +1,4 @@
-const randomValue = (min, max) => Math.floor(min + Math.random() * (max - min + 1));
+const randomValue = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
 const randomCubes = () => {
     const cube1 = randomValue(1, 6);
@@ -10,4 +10,6 @@ const randomCubes = () => {
     return playerResult;
 }
 
-export default randomCubes;
+const generateAttempts = (min, max) => Math.round((max - min) * 0.1);
+
+export { randomValue, randomCubes, generateAttempts };

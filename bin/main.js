@@ -2,6 +2,7 @@ import boxen from 'boxen';
 import readlineSync from 'readline-sync';
 
 import { diceGameRules } from '../src/diceroll.js';
+import { guessNumberRules } from '../src/guessNumber.js';
 
 const mainMenu = (username) => {
     console.clear();

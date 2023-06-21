@@ -4,32 +4,28 @@ import readlineSync from 'readline-sync';
 import mainMenu from '../bin/main.js';
 import { generateAttempts, randomValue } from './utils/generators.js';
 import { failureMsg, successMsg } from './utils/colorMsg.js';
+import { readyChecker, gameEnds, gameStarts } from './utils/readyChecker.js';
 
 const guessNumberRules = (username) => {
     console.clear();
     console.log(boxen(`Random number is generated in area you choose.\nThe amount of attempts is proportionally to possible numbers area.\nFor each attempt, you will receive a hint (lower, higher).\n\nGood Luck, ${username}!`, { title: 'Guess the Number', textAlignment: 'center', titleAlignment: 'center' }));
-    // TODO:
-    // make 'are you ready' thing a separate module
-    // use gamename as a parameter to specify next launch
-    setTimeout(() => {
-        if (readlineSync.keyInYN('Are you ready?')) {
+    if(readyChecker()) {
+        gameStarts();
+        setTimeout(() => {
+            console.clear();
             const minValue = readlineSync.question('Enter the smallest number for the game: ');
-            console.clear();
             const maxValue = readlineSync.question('Enter the largest number for the game: ');
-            console.clear();
-            console.log('Game starts!');
             guessNumber(username, minValue, maxValue);
-        } else {
-            console.clear();
-            console.log('Come back when you are ready...');
-        }
-    }, 2500);
+        }, 2000)
+    } else {
+        gameEnds();
+    }
 };
 
 const guessNumber = (username, minValue, maxValue) => {
     console.clear();
     const goalNumber = randomValue(minValue, maxValue);
-    console.log(goalNumber);
+    // console.log(goalNumber); <- uncomment to debug goal number value in-game
     let freeAttempts = generateAttempts(minValue, maxValue);
     let usedAttempts = 0;
     console.log(`You have ${freeAttempts} attempts.`);

@@ -20,10 +20,10 @@ const mainMenu = (username) => {
             madLibsPre(username);
             break;
         case '4':
-            adventureGame();
+            hangmanGame();
             break;
         case '5':
-            hangmanGame();
+            adventureGame();
             break;
         default:
             throw new Error(`${userChoice} is an incorrect value!\nPossible values: 0-5`);

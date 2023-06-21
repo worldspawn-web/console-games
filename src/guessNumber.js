@@ -2,7 +2,8 @@ import boxen from 'boxen';
 import readlineSync from 'readline-sync';
 
 import mainMenu from '../bin/main.js';
-import { generateAttempts, randomValue } from './util.js';
+import { generateAttempts, randomValue } from './utils/generators.js';
+import { failureMsg, successMsg } from './utils/colorMsg.js';
 
 const guessNumberRules = (username) => {
     console.clear();
@@ -35,7 +36,10 @@ const guessNumber = (username, minValue, maxValue) => {
     let userinput = null;
     while (userinput !== goalNumber) {
         if (freeAttempts < 0) {
-            console.log(`Unfortunately, you are out of attempts :(\nThe search number was - ${goalNumber}\nBetter luck next time...`);
+            console.clear();
+            failureMsg('Unfortunately, you are out of attempts :(');
+            console.log(`\nThe search number was - ${goalNumber}\nBetter luck next time...`);
+            userinput = goalNumber;
             setTimeout(() => mainMenu(username), 3000);
         }
         userinput = Number(readlineSync.question('Your answer: '));
@@ -44,15 +48,21 @@ const guessNumber = (username, minValue, maxValue) => {
             usedAttempts += 1;
             let goalHint = Math.sign(goalNumber - userinput);
             if (goalHint === 1) {
+                console.clear();
                 console.log(`The search number is higher than ${userinput}`);
             } else {
+                console.clear();
                 console.log(`The search number is lower than ${userinput}`);
             }
             console.log(`The amount of attempts left: ${freeAttempts}`);
         }
     }
     usedAttempts += 1;
-    setTimeout(() => console.log(`Congratulations! You have found the right number in ${usedAttempts} attempts!`), 500);
+    console.clear();
+    setTimeout(() => {
+        successMsg('Congratulations!');
+        console.log(`You have found the right number in ${usedAttempts} attempts!`);
+    }, 500);
     setTimeout(() => mainMenu(username), 5000);
 }
 

@@ -3,10 +3,11 @@ import readlineSync from 'readline-sync';
 
 import { diceGameRules } from '../src/diceroll.js';
 import { guessNumberRules } from '../src/guessNumber.js';
+import madLibsPre from '../src/madLibs.js';
 
 const mainMenu = (username) => {
     console.clear();
-    console.log(boxen(`\nAvailable games:\n1. Dice Rolling Simulator\n2. Guess the Number(wip)\n3. Mad Libs Generator(wip)\n4. Adventure Game(wip)\n5. Hangman(wip)`, {title: 'Welcome to Simple Console Games!', titleAlignment: 'center', textAlignment: 'center'}));
+    console.log(boxen(`\nAvailable games:\n1. Dice Rolling Simulator\n2. Guess the Number\n3. Mad Libs Generator(wip)\n4. Adventure Game(wip)\n5. Hangman(wip)`, {title: 'Welcome to Simple Console Games!', titleAlignment: 'center', textAlignment: 'center'}));
     const userChoice = readlineSync.question(`\nWhat is your choice, ${username}?\n`);
     switch(userChoice) {
         case '1':
@@ -16,7 +17,7 @@ const mainMenu = (username) => {
             guessNumberRules(username);
             break;
         case '3':
-            madLibsGen();
+            madLibsPre(username);
             break;
         case '4':
             adventureGame();

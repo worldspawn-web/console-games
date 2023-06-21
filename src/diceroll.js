@@ -1,7 +1,7 @@
 import boxen from 'boxen';
 import readlineSync from 'readline-sync';
 
-import { randomCubes } from './util.js';
+import { randomCubes } from './utils/generators.js';
 import mainMenu from '../bin/main.js';
 
 const diceGameRules = (username) => {

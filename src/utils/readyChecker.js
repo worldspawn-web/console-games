@@ -2,12 +2,20 @@ import readlineSync from 'readline-sync';
 
 const readyChecker = () => {
     if (readlineSync.keyInYN('Are you ready?')) {
-        console.clear();
-        console.log('Game starts!');
+        return true;
     } else {
-        console.clear();
-        console.log('Come back when you are ready...');
+        return false;
     }
+};
+
+const gameStarts = () => {
+    console.clear();
+    console.log('Game starts!');
 }
 
-export default readyChecker;
+const gameEnds = () => {
+    console.clear();
+    console.log('Come back when you will be ready...');
+}
+
+export { readyChecker, gameStarts, gameEnds };

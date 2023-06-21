@@ -7,7 +7,7 @@ import madLibsPre from '../src/madLibs.js';
 
 const mainMenu = (username) => {
     console.clear();
-    console.log(boxen(`\nAvailable games:\n1. Dice Rolling Simulator\n2. Guess the Number\n3. Mad Libs Generator(wip)\n4. Adventure Game(wip)\n5. Hangman(wip)`, {title: 'Welcome to Simple Console Games!', titleAlignment: 'center', textAlignment: 'center'}));
+    console.log(boxen(`\nAvailable games:\n1. Dice Rolling Simulator\n2. Guess the Number\n3. Mad Libs Generator\n4. Hangman (wip)\n5. Adventure Game (will be released as separate game)`, {title: 'Welcome to Simple Console Games!', titleAlignment: 'center', textAlignment: 'center'}));
     const userChoice = readlineSync.question(`\nWhat is your choice, ${username}?\n`);
     switch(userChoice) {
         case '1':

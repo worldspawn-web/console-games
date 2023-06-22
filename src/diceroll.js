@@ -1,4 +1,5 @@
 import boxen from 'boxen';
+import Image from 'ascii-art-image';
 
 import { randomCubes } from './utils/generators.js';
 import mainMenu from '../bin/main.js';
@@ -7,6 +8,17 @@ import delay from './utils/delay.js';
 
 const diceGameRules = (username) => {
     console.clear();
+    //
+    const diceImg = new Image({
+        filepath: 'img/diceroll.png',
+        alphabet: 'binary',
+        width: 60,
+        height: 60,
+    });
+    diceImg.write(function(err, rendered){
+        console.log(rendered);
+    });
+    //
     console.log(boxen(`\nYou roll the dice first. AI rolls second.\nIf your overall score is higher - you won.\nIf you got a double - your score will be 2x multiplied.\n\nGood Luck, ${username}!`, {title: 'Dice Roll', textAlignment: 'center', titleAlignment: 'center'}));
     setTimeout(() => {
         if (readyChecker()) {

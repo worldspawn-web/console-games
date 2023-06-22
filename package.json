@@ -13,6 +13,7 @@
     "gamestart": "bin/index.js"
   },
   "dependencies": {
+    "ascii-art": "^2.8.5",
     "boxen": "^7.1.0",
     "cli-color": "^2.0.3",
     "readline-sync": "^1.4.10"

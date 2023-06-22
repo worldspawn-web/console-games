@@ -6,6 +6,8 @@ const getStorylines = () => {
         'The Fun Park',
         'At the Arcade',
         'The First Day of School',
+        'In the Jungle',
+        'LAN Internet Cafe',
     ];
     let output = `${clc.yellow('Available storylines:')}\n`;
     for (let i = 0; i < storylines.length; i += 1) {
@@ -65,6 +67,33 @@ const stories = {
         '\nI thought it was a very (...) idea.',
         '\nIn swimming class, we needed to swim extremely (...), or else we would have to swim longer.',
         '\nBefore I knew it, school was over. I grabbed all my belongings and put them into my backpack. In two minutes, the bus came. As I stepped into the bus I shouted:\n"(...)" to my friends. Then I went into the bus. In a flash, I was back home. This day was an extremely exciting day!',
+    ],
+    5: [
+        '\nI walk through the color jungle. I take out my (...) canteen.',
+        '\nThere is a (...) parrot.',
+        '...with a (...) in hist mouth right there in front of me.',
+        '\nI gaze at his (...).',
+        '\nA sudden sound awakes me from my daydream! A panthers (...) in front of my head.',
+        '\nI (...) his breath...',
+        '\nI remember I have a packet of (...) that makes go into a deep slumber!',
+        '\nI (...) it away from me in front of the panther.',
+        '\nYes! He is eating it! I (...) away through the jungle.',
+        '\nI meet (...) at the tent. Phew! It was an exciting day in the jungle',
+    ],
+    6: [
+        '\nToday is Wednesday. The most boring day we have at school. I had around (...) dollars in my pocket, so I decided to visit internet cafe instead.',
+        '\nIn about (...) minutes I was there.',
+        '\nThe cafe was fogged, because it was not prohibited to (...) inside.',
+        '\nAdmin asked for how long I want to stay:\n- (...) hours, I think.',
+        '\nAfter that, I immediately gave him (...) and received my PC number.',
+        '\nEven though the PC was (...), the fps counter was average.',
+        '\nOld yellow keyboard was (...) and the mouse was nearly destroyed, but I did not care.\n - It is still better than Math at school.',
+        '\nThere was several games on PC desktop. All of them were old, but gold. I decided to play (...)',
+        '\n(...) started. I quickly adjusted the settings and hop on community servers.',
+        '\nThere was several LAN servers available. Probably those smokers were playing (...)',
+        '\nI decided to join and (...).',
+        '\nAfter I annihilated some of them in the first match, they (...).',
+        '\nI came back home with no money, no phone, no (...). Today was a good day...',
     ]
 };
 

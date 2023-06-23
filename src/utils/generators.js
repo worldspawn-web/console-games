@@ -17,4 +17,4 @@ const randomCubes = () => {
 
 const generateAttempts = (min, max) => Math.round((max - min) * 0.1);
 
-export { randomValue, randomCubes, generateAttempts };
+export { randomValue, randomCubes, generateAttempts, generateValue };

@@ -4,7 +4,7 @@ import readlineSync from 'readline-sync';
 import mainMenu from '../bin/main.js';
 import delay from './utils/delay.js';
 import { gameStarts, gameEnds, readyChecker } from './utils/readyChecker.js';
-import { generateValue } from './utils/generators.js';
+import { randomValue } from './utils/generators.js';
 
 const ticTacToeRules = async (username) => {
     console.clear();
@@ -65,8 +65,8 @@ const gameLogic = async (userSymbol, aiSymbol, username, difficulty) => {
 
     // ai generate values
     const aiGen = () => {
-        aiRow = generateValue(1, 3);
-        aiCell = generateValue(1, 3);
+        aiRow = randomValue(1, 3);
+        aiCell = randomValue(1, 3);
         if (checkCell(aiRow, aiCell)) {
             rows[aiRow][aiCell] = aiSymbol;
             freeCells -= 1;

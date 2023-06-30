@@ -21,23 +21,19 @@ const ticTacToeRules = async (username) => {
 
 const startTicTacToe = async (username) => {
     console.clear();
-    const difficulties = ['Easy', 'Normal', 'Hard'];
-    const difficulty = readlineSync.keyInSelect(difficulties, 'Choose AI strength: ');
-    console.clear();
-    console.log(`Selected AI strength: ${difficulties[difficulty]}.`);
 
     await delay(1500);
-    console.clear();
+    // console.clear();
     const userSymbol = readlineSync.question('Choose your symbol: ');
     console.clear();
     const aiSymbol = readlineSync.question('Choose AI symbol: ');
     console.clear();
 
     await delay(1000);
-    gameLogic(userSymbol, aiSymbol, username, difficulty);
+    gameLogic(userSymbol, aiSymbol, username);
 }
 
-const gameLogic = async (userSymbol, aiSymbol, username, difficulty) => {
+const gameLogic = async (userSymbol, aiSymbol, username) => {
     // temp field TODO: change to a better solution
     const numbers = [1, 2, 3];
     const rows = {
@@ -67,6 +63,7 @@ const gameLogic = async (userSymbol, aiSymbol, username, difficulty) => {
     const aiGen = () => {
         aiRow = randomValue(1, 3);
         aiCell = randomValue(1, 3);
+        console.log(aiRow, aiCell);
         if (checkCell(aiRow, aiCell)) {
             rows[aiRow][aiCell] = aiSymbol;
             freeCells -= 1;
@@ -97,17 +94,9 @@ const gameLogic = async (userSymbol, aiSymbol, username, difficulty) => {
 
     const nextRound = async () => {
         updateGameBoard();
-        // who makes a move first
-        if (difficulty === 3) {
-            await delay(2000);
-            aiStatus = true;
-            console.log(`You're playing second, ${username}.`)
-            aiGen();
-        } else {
-            await delay(2000);
-            aiStatus = false;
-            console.log(`You're playing first, ${username}.`)
-        }
+
+        await delay(2000);
+        console.log(`You're playing first, ${username}.`)
 
         // move status
         aiStatus === true ? aiGen() : userGen();

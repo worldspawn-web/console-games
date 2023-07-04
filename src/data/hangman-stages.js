@@ -1,59 +1,17 @@
 import clc from 'cli-color';
+import delay from '../utils/delay.js';
 
-const hangmanStages = {
-    1: [` +---+\n
-    |   |\n
-        |\n
-        |\n
-        |\n
-        |\n
-  =========\n`],
-    2: [`+---+\n
-  |   |\n
-  O   |\n
-      |\n
-      |\n
-      |\n
-=========\n`],
-    3: [`+---+\n
-    |   |\n
-    O   |\n
-    |   |\n
-        |\n
-        |\n
-  =========\n`],
-    4: [`+---+\n
-  |   |\n
-  O   |\n
- /|   |\n
-      |\n
-      |\n
-=========\n`],
-    5: [`+---+\n
-    |   |\n
-    O   |\n
-   /|\  |\n
-        |\n
-        |\n
-  =========\n`],
-    6: [`+---+\n
-    |   |\n
-    O   |\n
-   /|\  |\n
-   /    |\n
-        |\n
-  =========\n`],
-    7: [`+---+\n
-    |   |\n
-    O   |\n
-   /|\  |\n
-   / \  |\n
-        |\n
-  =========\n`]
-};
+import { randomValue } from '../utils/generators.js';
+import mainMenu from '../../bin/main.js';
 
-const hangmanThemes = ['sports', 'science', 'technologies', 'programming', 'gaming'];
+// const hangmanStages = {
+//     // hangman visualized stages will be there...
+    
+// };
 
+const hangmanThemes = ['Sports', 'Science', 'Technologies', 'Programming', 'Gaming'];
+
+// chooser
 const getThemesList = () => {
     let output = `${clc.yellow('Available themes:')}\n`;
     for (let i = 0; i < hangmanThemes.length; i += 1) {
@@ -62,16 +20,75 @@ const getThemesList = () => {
     return output;
 };
 
-const getTheme = (number) => {
+const getThemeName = (number) => hangmanThemes[number];
+
+const getThemeWord = (number) => {
+    const wordsArr = hangmanWords[number];
+    const maxValue = wordsArr.length;
+    return hangmanWords[number][randomValue(0, maxValue)];
+};
+
+const gameOver = async (gameStatus, username, goalWord) => {
+    switch (gameStatus) {
+        case 'success':
+            console.log(`Congratulations, ${username}!\nThe word was ${goalWord}.\n\nReturning to the main menu...`);
+
+            await delay(5000);
+            break;
+        case 'fail':
+            console.log(`Unfortunately, ${username}, you couldn't save the guy...\nThe word was ${goalWord}.\n\nReturning to the main menu...`);
+
+            await delay(5000);
+            break;
+    }
+    await mainMenu();
+};
+
+const isValidLetter = (letterSuggest) => letterSuggest.length === 1 ? true : false;
+
+const containCheck = (letterSuggest, goalWord) => {
+    const arr = goalWord.split('');
+    for (let i = 0; i < arr.length; i += 1) {
+        if (arr[i] === letterSuggest.toLowerCase()) {
+            return true;
+        }
+    }
+    return false;
+};
+
+const correctLetter = (letterSuggest, goalWord, goalWordHidden) => {
+    const arr = goalWord.split('');
+    let hiddenIndex = 0;
+    for (let i = 0; i < arr.length; i += 1) {
+        if (arr[i] === letterSuggest.toLowerCase()) {
+            hiddenIndex = i;
+            i = arr.length;
+        }
+    }
+    const hiddenArr = goalWordHidden.split('');
+    hiddenArr[hiddenIndex] = letterSuggest;
+    return hiddenArr.join('');
+};
+
+const hideWord = (word) => {
+    const replacer = '_';
+    const arr = [];
+    for (let i = 0; i < word.length; i += 1) {
+        arr.push(replacer);
+    }
+    return arr.join('');
+}
+
+const isThemeValid = (number) => {
     if (hangmanThemes[number]) {
-        return hangmanThemes[number];
+        return true;
     } else {
-        throw new Error(`${number} value is invalid!`);
+        return false;
     }
 };
 
 const hangmanWords = {
-    sports: [
+    Sports: [
         "football",
         "basketball",
         "tennis",
@@ -97,7 +114,7 @@ const hangmanWords = {
         "surfing",
         "handball",
         "powerlifting",],
-    science: [
+    Science: [
         "physics",
         "chemistry",
         "biology",
@@ -111,7 +128,7 @@ const hangmanWords = {
         "neuroscience",
         "medicine",
         "botany"],
-    technologies: [
+    Technologies: [
         "computer",
         "internet",
         "software",
@@ -137,7 +154,7 @@ const hangmanWords = {
         "IoT",
         "drones",
         "3D printing"],
-    programming: [
+    Programming: [
         "variable",
         "function",
         "loop",
@@ -163,7 +180,7 @@ const hangmanWords = {
         "compiler",
         "IDE",
         "API"],
-    gaming: [
+    Gaming: [
         "game",
         "console",
         "controller",
@@ -190,3 +207,5 @@ const hangmanWords = {
         "VR",
         "eSports"],
 };
+
+export { getThemesList, isThemeValid, getThemeName, getThemeWord, hideWord, isValidLetter, correctLetter, containCheck, gameOver };

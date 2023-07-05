@@ -93,7 +93,7 @@ const startHangman = async (username, userThemeNum) => {
   if (depressionLevel === 5) {
     gameOver("fail", username, goalWord);
   } else {
-    gameOver("succes", username);
+    gameOver("success", username);
   }
 };
 

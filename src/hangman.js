@@ -1,5 +1,6 @@
 import boxen from 'boxen';
 import readlineSync from 'readline-sync';
+import clc from 'cli-color';
 
 import mainMenu from '../bin/main.js';
 import delay from './utils/delay.js';
@@ -64,8 +65,8 @@ const startHangman = async (username, userThemeNum) => {
 
   await delay(500);
   while (depressionLevel < 5 && openedLetters.size < uniqueLetters.size) {
-    console.clear();
-    console.log(`Temporary answer: ${goalWord}\n\n`);
+    // console.clear();
+    // console.log(`Temporary answer: ${goalWord}\n\n`);
     console.log(`Current depression level: ${depressionLevel}`);
     console.log(`Theme: ${themeName}\n\n${goalWordHidden}`);
 
@@ -79,7 +80,7 @@ const startHangman = async (username, userThemeNum) => {
         openedLetters.add(letterSuggest);
       } else {
         console.clear();
-        console.log(`Unfortunately, there is no such a letter!`);
+        console.log(`There is no letter - ${clc.red(letterSuggest)}!`);
         depressionLevel += 1;
       }
     } else {

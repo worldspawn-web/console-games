@@ -1,8 +1,6 @@
 import clc from 'cli-color';
-import delay from '../utils/delay.js';
 
 import { randomValue } from '../utils/generators.js';
-import mainMenu from '../../bin/main.js';
 
 // const hangmanStages = {
 //     // hangman visualized stages will be there...
@@ -35,13 +33,18 @@ const getThemeWord = (number) => {
 };
 
 const gameOver = (gameStatus, username, goalWord) => {
+  console.clear();
   switch (gameStatus) {
     case 'success':
-      console.log(`Congratulations, ${username}!\nThe word was ${goalWord}.`);
+      console.log(
+        `Congratulations, ${username}!\nThe word was ${clc.green(goalWord)}.`
+      );
       break;
     case 'fail':
       console.log(
-        `Unfortunately, ${username}, you couldn't save the guy...\nThe word was ${goalWord}.`
+        `Unfortunately, ${username}, you couldn't save the guy...\nThe word was ${clc.red(
+          goalWord
+        )}.`
       );
       break;
   }

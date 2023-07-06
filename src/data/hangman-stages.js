@@ -118,7 +118,6 @@ const hangmanWords = {
     'rowing',
     'surfing',
     'handball',
-    'powerlifting',
   ],
   Science: [
     'physics',

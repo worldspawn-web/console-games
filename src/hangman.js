@@ -39,18 +39,18 @@ const preHangman = async (username) => {
   const themes = getThemesList();
   console.log(themes);
   const userThemeNum = readlineSync.question('Choose your theme: ') - 1;
-  isThemeValid(userThemeNum)
-    ? startHangman(username, userThemeNum)
-    : console.log(
-        `Theme with number ${userThemeNum} is not valid.\nReturning to main menu...`
-      );
-
-  await delay(3000);
-  mainMenu(username);
+  if (isThemeValid(userThemeNum)) {
+    await startHangman(username, userThemeNum);
+  } else {
+    console.log(
+      `Theme with number ${userThemeNum} is not valid.\n Returning to the main menu...`
+    );
+    await delay(3000);
+    mainMenu(username);
+  }
 };
 
 const startHangman = async (username, userThemeNum) => {
-  debugger;
   console.clear();
   const themeName = getThemeName(userThemeNum);
   console.log(
@@ -59,10 +59,11 @@ const startHangman = async (username, userThemeNum) => {
   const goalWord = getThemeWord(themeName);
   let goalWordHidden = hideWord(goalWord);
   let depressionLevel = 0;
-  let correctAnswers = 0;
+  const uniqueLetters = new Set(goalWord.split(''));
+  const openedLetters = new Set();
 
   await delay(500);
-  while (depressionLevel < 5 && correctAnswers < goalWord.length) {
+  while (depressionLevel < 5 && openedLetters.size < uniqueLetters.size) {
     console.clear();
     console.log(`Temporary answer: ${goalWord}\n\n`);
     console.log(`Current depression level: ${depressionLevel}`);
@@ -75,7 +76,7 @@ const startHangman = async (username, userThemeNum) => {
         console.clear();
         console.log(`That's correct!`);
         goalWordHidden = correctLetter(letterSuggest, goalWord, goalWordHidden);
-        correctAnswers += 1;
+        openedLetters.add(letterSuggest);
       } else {
         console.clear();
         console.log(`Unfortunately, there is no such a letter!`);
@@ -90,7 +91,7 @@ const startHangman = async (username, userThemeNum) => {
   if (depressionLevel === 5) {
     gameOver('fail', username, goalWord);
   } else {
-    gameOver('success', username);
+    gameOver('success', username, goalWord);
   }
 };
 

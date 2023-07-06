@@ -132,6 +132,10 @@ const gameLogic = async (userSymbol, aiSymbol, username) => {
     // win/lose check
     if (winCheck(rows, userSymbol, aiSymbol)) {
       console.clear();
+      //
+      // TODO: detect who just won, player/AI
+      // TODO: return to the main menu in 5 seconds
+      //
       console.log('Someone just won.');
     } else {
       // next move

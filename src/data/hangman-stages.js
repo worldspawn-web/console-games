@@ -37,16 +37,12 @@ const getThemeWord = (number) => {
 const gameOver = (gameStatus, username, goalWord) => {
   switch (gameStatus) {
     case 'success':
-      console.log(
-        `Congratulations, ${username}!\nThe word was ${goalWord}.\n\nReturning to the main menu...`
-      );
-      mainMenu(username);
+      console.log(`Congratulations, ${username}!\nThe word was ${goalWord}.`);
       break;
     case 'fail':
       console.log(
-        `Unfortunately, ${username}, you couldn't save the guy...\nThe word was ${goalWord}.\n\nReturning to the main menu...`
+        `Unfortunately, ${username}, you couldn't save the guy...\nThe word was ${goalWord}.`
       );
-      mainMenu(username);
       break;
   }
 };
@@ -66,15 +62,16 @@ const containCheck = (letterSuggest, goalWord) => {
 
 const correctLetter = (letterSuggest, goalWord, goalWordHidden) => {
   const arr = goalWord.split('');
-  let hiddenIndex = 0;
+  let hiddenIndex = [];
   for (let i = 0; i < arr.length; i += 1) {
     if (arr[i] === letterSuggest.toLowerCase()) {
-      hiddenIndex = i;
-      i = arr.length;
+      hiddenIndex.push(i);
     }
   }
   const hiddenArr = goalWordHidden.split('');
-  hiddenArr[hiddenIndex] = letterSuggest;
+  for (let i = 0; i < hiddenIndex.length; i += 1) {
+    hiddenArr[hiddenIndex[i]] = letterSuggest;
+  }
   return hiddenArr.join('');
 };
 

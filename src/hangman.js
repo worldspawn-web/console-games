@@ -63,6 +63,8 @@ const startHangman = async (username, userThemeNum) => {
 
   await delay(500);
   while (depressionLevel < 5 && correctAnswers < goalWord.length) {
+    console.clear();
+    console.log(`Temporary answer: ${goalWord}\n\n`);
     console.log(`Current depression level: ${depressionLevel}`);
     console.log(`Theme: ${themeName}\n\n${goalWordHidden}`);
 

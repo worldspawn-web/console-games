@@ -11,7 +11,7 @@ const mainMenu = (username) => {
   console.clear();
   console.log(
     boxen(
-      `\nAvailable games:\n1. Dice Rolling Simulator\n2. Guess the Number\n3. Mad Libs Generator\n4. Tic-Tac-Toe(wip)\n5. Hangman (wip)`,
+      `\nAvailable games:\n1. Dice Rolling Simulator\n2. Guess the Number\n3. Mad Libs Generator\n4. Tic-Tac-Toe\n5. Hangman (wip)`,
       {
         title: 'Welcome to Simple Console Games!',
         titleAlignment: 'center',

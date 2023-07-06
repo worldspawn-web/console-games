@@ -17,11 +17,22 @@ import {
   gameOver,
 } from './data/hangman-stages.js';
 
+const ascii = `
+ +---+
+ |   |
+ O   |
+/|\  |
+/ \  |
+     |
+=========
+\n`;
+
 const hangmanRules = async (username) => {
   console.clear();
   console.log(
     boxen(
-      `Hangman is a classic game, where you need to guess the specific word by one letter.\nFor each mistake - your character will be one step closer to being hanged.\nBefore the game starts, you need to choose a word theme (sports, science, movies, etc).\n\nGood luck, ${username}. Save this poor guy.`,
+      ascii +
+        `Hangman is a classic game, where you need to guess the specific word by one letter.\nFor each mistake - your character will be one step closer to being hanged.\nBefore the game starts, you need to choose a word theme (sports, science, movies, etc).\n\nGood luck, ${username}. Save this poor guy.`,
       { title: 'Hangman', textAlignment: 'center', titleAlignment: 'center' }
     )
   );

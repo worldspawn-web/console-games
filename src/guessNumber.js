@@ -7,11 +7,21 @@ import { failureMsg, successMsg } from './utils/colorMsg.js';
 import { readyChecker, gameEnds, gameStarts } from './utils/readyChecker.js';
 import delay from './utils/delay.js';
 
+const ascii = `
++--------------+
+|              |
+|  Guess the   |
+|   Number!    |
+|              |
++--------------+
+\n`;
+
 const guessNumberRules = (username) => {
   console.clear();
   console.log(
     boxen(
-      `Random number is generated in area you choose.\nThe amount of attempts is proportionally to possible numbers area.\nFor each attempt, you will receive a hint (lower, higher).\n\nGood Luck, ${username}!`,
+      ascii +
+        `Random number is generated in area you choose.\nThe amount of attempts is proportionally to possible numbers area.\nFor each attempt, you will receive a hint (lower, higher).\n\nGood Luck, ${username}!`,
       {
         title: 'Guess the Number',
         textAlignment: 'center',

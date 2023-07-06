@@ -1,16 +1,26 @@
 import boxen from 'boxen';
 import readlineSync from 'readline-sync';
+import clc from 'cli-color';
 
 import mainMenu from '../bin/main.js';
 import delay from './utils/delay.js';
 import { gameStarts, gameEnds, readyChecker } from './utils/readyChecker.js';
 import { randomValue } from './utils/generators.js';
 
+const gameBoard = `
+X | O | O 
+---+---+---
+O | X | X 
+---+---+---
+O | X | O 
+\n`;
+
 const ticTacToeRules = async (username) => {
   console.clear();
   console.log(
     boxen(
-      `Tic-Tac-Toe is a classic game that takes place on 3x3 game board.\nThe main goal - is to get 3 symbols in one line, which can be vertical/horizontal/diagonal.\nIf there are no more available moves, game restarts.\n\nGood luck, ${username}`,
+      gameBoard +
+        `Tic-Tac-Toe is a classic game that takes place on 3x3 game board.\nThe main goal - is to get 3 symbols in one line, which can be vertical/horizontal/diagonal.\nIf there are no more available moves, game restarts.\n\nGood luck, ${username}`,
       {
         title: 'Tic-Tac-Toe',
         textAlignment: 'center',
@@ -59,6 +69,7 @@ const gameLogic = async (userSymbol, aiSymbol, username) => {
   // checker if it's an AI move
   let aiStatus = false;
   let freeCells = 9;
+  let userMovesCounter = 0;
 
   // checker for cell availability
   const checkCell = (rownum, cellnum) =>
@@ -112,6 +123,7 @@ const gameLogic = async (userSymbol, aiSymbol, username) => {
     rows[userRow][userCell] = userSymbol;
     freeCells -= 1;
     aiStatus = true;
+    userMovesCounter += 1;
   };
 
   const nextRound = async () => {
@@ -132,11 +144,12 @@ const gameLogic = async (userSymbol, aiSymbol, username) => {
     // win/lose check
     if (winCheck(rows, userSymbol, aiSymbol)) {
       console.clear();
-      //
-      // TODO: detect who just won, player/AI
-      // TODO: return to the main menu in 5 seconds
-      //
-      console.log('Someone just won.');
+      const winner = aiStatus ? 'AI' : username;
+      console.log(
+        `Congratulations, ${winner}!\nYou have beaten AI in just ${clc.green(
+          userMovesCounter
+        )} moves!`
+      );
     } else {
       // next move
       nextRound();

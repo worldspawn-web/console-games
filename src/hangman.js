@@ -1,9 +1,9 @@
-import boxen from "boxen";
-import readlineSync from "readline-sync";
+import boxen from 'boxen';
+import readlineSync from 'readline-sync';
 
-import mainMenu from "../bin/main.js";
-import delay from "./utils/delay.js";
-import { gameStarts, gameEnds, readyChecker } from "./utils/readyChecker.js";
+import mainMenu from '../bin/main.js';
+import delay from './utils/delay.js';
+import { gameStarts, gameEnds, readyChecker } from './utils/readyChecker.js';
 import {
   getThemesList,
   isThemeValid,
@@ -14,14 +14,14 @@ import {
   correctLetter,
   containCheck,
   gameOver,
-} from "./data/hangman-stages.js";
+} from './data/hangman-stages.js';
 
 const hangmanRules = async (username) => {
   console.clear();
   console.log(
     boxen(
       `Hangman is a classic game, where you need to guess the specific word by one letter.\nFor each mistake - your character will be one step closer to being hanged.\nBefore the game starts, you need to choose a word theme (sports, science, movies, etc).\n\nGood luck, ${username}. Save this poor guy.`,
-      { title: "Hangman", textAlignment: "center", titleAlignment: "center" }
+      { title: 'Hangman', textAlignment: 'center', titleAlignment: 'center' }
     )
   );
 
@@ -38,7 +38,7 @@ const preHangman = async (username) => {
   console.clear();
   const themes = getThemesList();
   console.log(themes);
-  const userThemeNum = readlineSync.question("Choose your theme: ");
+  const userThemeNum = readlineSync.question('Choose your theme: ');
   isThemeValid(userThemeNum)
     ? startHangman(username, userThemeNum)
     : console.log(
@@ -69,7 +69,7 @@ const startHangman = async (username, userThemeNum) => {
     console.log(`Theme: ${themeName}\n\n${goalWordHidden}`);
 
     // await delay(1000);
-    const letterSuggest = readlineSync.keyIn("Letter: ");
+    const letterSuggest = readlineSync.keyIn('Letter: ');
     //
     // FIX: function returns to the main menu after letter input for some reason
     //
@@ -84,16 +84,16 @@ const startHangman = async (username, userThemeNum) => {
         depressionLevel += 1;
       }
     } else {
-      console.log("You have entere not a letter.");
+      console.log('You have entere not a letter.');
     }
 
     // await delay(1000);
   }
 
   if (depressionLevel === 5) {
-    gameOver("fail", username, goalWord);
+    gameOver('fail', username, goalWord);
   } else {
-    gameOver("success", username);
+    gameOver('success', username);
   }
 };
 

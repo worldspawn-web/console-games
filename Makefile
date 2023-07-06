@@ -3,3 +3,6 @@ gamestart:
 
 eslint:
 	npx eslint .
+
+install:
+	npm ci

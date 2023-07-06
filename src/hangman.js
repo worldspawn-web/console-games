@@ -38,7 +38,7 @@ const preHangman = async (username) => {
   console.clear();
   const themes = getThemesList();
   console.log(themes);
-  const userThemeNum = readlineSync.question('Choose your theme: ');
+  const userThemeNum = readlineSync.question('Choose your theme: ') - 1;
   isThemeValid(userThemeNum)
     ? startHangman(username, userThemeNum)
     : console.log(
@@ -64,30 +64,25 @@ const startHangman = async (username, userThemeNum) => {
   await delay(500);
   while (depressionLevel < 5 && correctAnswers < goalWord.length) {
     console.log(`Current depression level: ${depressionLevel}`);
-
-    // await delay(1000);
     console.log(`Theme: ${themeName}\n\n${goalWordHidden}`);
 
-    // await delay(1000);
     const letterSuggest = readlineSync.keyIn('Letter: ');
-    //
-    // FIX: function returns to the main menu after letter input for some reason
-    //
-    // await delay(3000);
+
     if (isValidLetter(letterSuggest)) {
       if (containCheck(letterSuggest, goalWord)) {
-        console.log(`There is no such a letter!`);
+        console.clear();
+        console.log(`That's correct!`);
         goalWordHidden = correctLetter(letterSuggest, goalWord, goalWordHidden);
         correctAnswers += 1;
       } else {
+        console.clear();
         console.log(`Unfortunately, there is no such a letter!`);
         depressionLevel += 1;
       }
     } else {
-      console.log('You have entere not a letter.');
+      console.clear();
+      console.log('You have entered not a letter.');
     }
-
-    // await delay(1000);
   }
 
   if (depressionLevel === 5) {

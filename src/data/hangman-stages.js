@@ -34,24 +34,21 @@ const getThemeWord = (number) => {
   return hangmanWords[number][randomValue(0, maxValue)];
 };
 
-const gameOver = async (gameStatus, username, goalWord) => {
+const gameOver = (gameStatus, username, goalWord) => {
   switch (gameStatus) {
     case 'success':
       console.log(
         `Congratulations, ${username}!\nThe word was ${goalWord}.\n\nReturning to the main menu...`
       );
-
-      await delay(5000);
+      mainMenu(username);
       break;
     case 'fail':
       console.log(
         `Unfortunately, ${username}, you couldn't save the guy...\nThe word was ${goalWord}.\n\nReturning to the main menu...`
       );
-
-      await delay(5000);
+      mainMenu(username);
       break;
   }
-  await mainMenu();
 };
 
 const isValidLetter = (letterSuggest) =>

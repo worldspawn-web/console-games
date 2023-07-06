@@ -41,8 +41,8 @@ const mainMenu = (username) => {
       hangmanRules(username);
       break;
     default:
-      throw new Error(
-        `${userChoice} is an incorrect value!\nPossible values: 0-5`
+      console.log(
+        `There is no such game with a number ${userChoice}.\nReturning to the main menu...`
       );
   }
 };

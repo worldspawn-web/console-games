@@ -20,8 +20,7 @@ const guessNumberRules = (username) => {
   console.clear();
   console.log(
     boxen(
-      ascii +
-        `Random number is generated in area you choose.\nThe amount of attempts is proportionally to possible numbers area.\nFor each attempt, you will receive a hint (lower, higher).\n\nGood Luck, ${username}!`,
+      ascii`Random number is generated in area you choose.\nThe amount of attempts is proportionally to possible numbers area.\nFor each attempt, you will receive a hint (lower, higher).\n\nGood Luck, ${username}!`,
       {
         title: 'Guess the Number',
         textAlignment: 'center',

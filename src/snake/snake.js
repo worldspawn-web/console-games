@@ -49,8 +49,6 @@ class Snake {
   }
 
   moveHead() {
-    debugger;
-
     const headPos = this.snake[0];
 
     switch (this.direction) {

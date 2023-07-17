@@ -48,25 +48,42 @@ class Snake {
     this.direction = direction;
   }
 
-  moveHead() {
+  moveHead(field) {
+    debugger;
     const headPos = this.snake[0];
 
     switch (this.direction) {
       case "left":
         this.snake.pop();
-        this.snake = [{ x: headPos.x - 1, y: headPos.y }, ...this.snake];
+        if (headPos.x === 0) {
+          this.snake = [{ x: field.width - 1, y: headPos.y }, ...this.snake];
+        } else {
+          this.snake = [{ x: headPos.x - 1, y: headPos.y }, ...this.snake];
+        }
         break;
       case "right":
         this.snake.pop();
-        this.snake = [{ x: headPos.x + 1, y: headPos.y }, ...this.snake];
+        if (headPos.x === field.width - 1) {
+          this.snake = [{ x: 0, y: headPos.y }, ...this.snake];
+        } else {
+          this.snake = [{ x: headPos.x + 1, y: headPos.y }, ...this.snake];
+        }
         break;
       case "up":
         this.snake.pop();
-        this.snake = [{ x: headPos.x, y: headPos.y - 1 }, ...this.snake];
+        if (headPos.y === 0) {
+          this.snake = [{ x: headPos.x, y: field.height - 1 }, ...this.snake];
+        } else {
+          this.snake = [{ x: headPos.x, y: headPos.y - 1 }, ...this.snake];
+        }
         break;
       case "down":
         this.snake.pop();
-        this.snake = [{ x: headPos.x, y: headPos.y + 1 }, ...this.snake];
+        if (headPos.y === field.height - 1) {
+          this.snake = [{ x: headPos.x, y: 0 }, ...this.snake];
+        } else {
+          this.snake = [{ x: headPos.x, y: headPos.y + 1 }, ...this.snake];
+        }
         break;
     }
   }

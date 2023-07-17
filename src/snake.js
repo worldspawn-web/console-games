@@ -82,6 +82,7 @@ const draw = () => {
       titleAlignment: "center",
     })
   );
+  console.log("Your score:", snake.level);
 };
 
 export default snakeRules;

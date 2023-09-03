@@ -6,7 +6,7 @@ import mainMenu from '../bin/main.js';
 import { getStory, getStorylines } from './data/madlibs-library.js';
 import { readyChecker, gameEnds, gameStarts } from './utils/readyChecker.js';
 
-const madLibsRules = (username) => {
+const madLibsRules = (username: string) => {
   console.clear();
   console.log(
     boxen(
@@ -22,13 +22,15 @@ const madLibsRules = (username) => {
   }
 };
 
-const startMadLib = (username) => {
+const startMadLib = (username: string) => {
   console.clear();
   console.log(getStorylines());
-  const storyNumber = readlineSync.question('Choose your storyline: ');
+  const storyNumber: number = Number(
+    readlineSync.question('Choose your storyline: ')
+  );
   console.clear();
   const story = getStory(storyNumber);
-  const answers = [];
+  const answers: string[] = [];
   for (let i = 0; i < story.length; i += 1) {
     if (!answers[i]) {
       console.clear();
@@ -37,7 +39,7 @@ const startMadLib = (username) => {
     }
   }
   console.clear();
-  const madLibsText = story
+  const madLibsText: string = story
     .map((question, index) => question.replace('(...)', answers[index]))
     .join(' ');
   console.log(madLibsText);

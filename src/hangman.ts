@@ -27,7 +27,7 @@ const ascii = `
 =========
 \n`;
 
-const hangmanRules = async (username) => {
+const hangmanRules = async (username: string) => {
   console.clear();
   console.log(
     boxen(
@@ -46,11 +46,11 @@ const hangmanRules = async (username) => {
   }
 };
 
-const preHangman = async (username) => {
+const preHangman = async (username: string) => {
   console.clear();
   const themes = getThemesList();
   console.log(themes);
-  const userThemeNum = readlineSync.question('Choose your theme: ') - 1;
+  const userThemeNum = Number(readlineSync.question('Choose your theme: ')) - 1;
   if (isThemeValid(userThemeNum)) {
     await startHangman(username, userThemeNum);
   } else {
@@ -62,17 +62,17 @@ const preHangman = async (username) => {
   }
 };
 
-const startHangman = async (username, userThemeNum) => {
+const startHangman = async (username: string, userThemeNum: number) => {
   console.clear();
-  const themeName = getThemeName(userThemeNum);
+  const themeName: string = getThemeName(userThemeNum);
   console.log(
     `Selected theme is - ${themeName}.\nPicking up an appropriate word for you...`
   );
-  const goalWord = getThemeWord(themeName);
-  let goalWordHidden = hideWord(goalWord);
+  const goalWord: string = getThemeWord(userThemeNum);
+  let goalWordHidden: string = hideWord(goalWord);
   let depressionLevel = 0;
-  const uniqueLetters = new Set(goalWord.split(''));
-  const openedLetters = new Set();
+  const uniqueLetters: Set<string> = new Set(goalWord.split(''));
+  const openedLetters: Set<string> = new Set();
 
   await delay(500);
   while (depressionLevel < 5 && openedLetters.size < uniqueLetters.size) {

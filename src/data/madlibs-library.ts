@@ -1,6 +1,6 @@
 import clc from 'cli-color';
 
-const getStorylines = () => {
+const getStorylines = (): string => {
   const storylines = [
     'Zoo Day',
     'The Fun Park',
@@ -16,8 +16,8 @@ const getStorylines = () => {
   return output;
 };
 
-const stories = {
-  1: [
+const stories = [
+  [
     '\nToday I went to the zoo. I saw a(n) (...) jumping up and down in its tree.',
     '\nHe (...) through the large tunnel',
     'that led to its (...).',
@@ -28,7 +28,7 @@ const stories = {
     '\nWhen I got home I (...) my mom',
     'for a (...) day at the zoo.',
   ],
-  2: [
+  [
     '\nToday, my fabulous camp group went to a(an) (...) amusement park.',
     '\nIt was a fun park with lots of cool (...) and enjoyable play structures.',
     '\nWhen we got there, my kind counselor shouted loudly, "Everybody off the (...)!"',
@@ -40,7 +40,7 @@ const stories = {
     '\nThe rest of the day went (...).',
     '\nIt was a(n) (...) day at the fun park.',
   ],
-  3: [
+  [
     '\nWhen I go to the arcade with my (...) there are lots of games to play.',
     '\nI spend lots of time there with my friends. In the game X-Men you can be different (...).',
     '\nThe point of the game is to (...) every robot.',
@@ -51,7 +51,7 @@ const stories = {
     '\nYou can save your (...) for another time.',
     '\nWhen I went to this arcade I did not believe how much (...) it would be. So far I have had a lot of fun every time I have been to this great arcade!',
   ],
-  4: [
+  [
     '\nOne very nice morning near the end of summer, my mother woke me up at 4:00 A.M. and said:\n\n- Wake up and smell the grass, sleepy head! Today is your first day of school and you can not be late!\n\nI groaned in my bed for twenty seconds, but eventually I got dressed.\nI wore a blue and white striped, long sleeve (...) with a collar on it, a red tie, dark grey pants, white socks, black shoes.',
     '\nAlso I had a (...) hat.',
     '\nIn ten minutes I made a lunch and ate my breakfast. (...) minutes later, the bus came.',
@@ -68,7 +68,7 @@ const stories = {
     '\nIn swimming class, we needed to swim extremely (...), or else we would have to swim longer.',
     '\nBefore I knew it, school was over. I grabbed all my belongings and put them into my backpack. In two minutes, the bus came. As I stepped into the bus I shouted:\n"(...)" to my friends. Then I went into the bus. In a flash, I was back home. This day was an extremely exciting day!',
   ],
-  5: [
+  [
     '\nI walk through the color jungle. I take out my (...) canteen.',
     '\nThere is a (...) parrot.',
     '...with a (...) in hist mouth right there in front of me.',
@@ -80,7 +80,7 @@ const stories = {
     '\nYes! He is eating it! I (...) away through the jungle.',
     '\nI meet (...) at the tent. Phew! It was an exciting day in the jungle',
   ],
-  6: [
+  [
     '\nToday is Wednesday. The most boring day we have at school. I had around (...) dollars in my pocket, so I decided to visit internet cafe instead.',
     '\nIn about (...) minutes I was there.',
     '\nThe cafe was fogged, because it was not prohibited to (...) inside.',
@@ -95,9 +95,9 @@ const stories = {
     '\nAfter I annihilated some of them in the first match, they (...).',
     '\nI came back home with no money, no phone, no (...). Today was a good day...',
   ],
-};
+];
 
-const getStory = (number) => {
+const getStory = (number: number): string[] => {
   if (stories[number]) {
     return stories[number];
   } else {

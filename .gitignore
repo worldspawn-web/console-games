@@ -1,5 +1,7 @@
 /node_modules/
 index-**.exe
+*.js
+tsconfig.json
 
 # Editor directories and files
 .vscode/*

@@ -76,22 +76,22 @@ const gameLogic = async (
   let userMovesCounter = 0;
 
   // checker for cell availability
-  const checkCell = (rownum: number, cellnum: number) =>
+  const checkCell = (rownum: number, cellnum: number): boolean =>
     rows[rownum][cellnum] === '_' ? true : false;
 
   const updateGameBoard = () => {
     console.clear();
     console.log(
-      `Current Field:\n\n${rows[1].join(' ')}\n${rows[2].join(
+      `Current Field:\n\n${rows[0].join(' ')}\n${rows[1].join(
         ' '
-      )}\n${rows[3].join(' ')}\n`
+      )}\n${rows[2].join(' ')}\n`
     );
   };
 
   // ai generate values
   const aiGen = () => {
-    aiRow = randomValue(1, 3);
-    aiCell = randomValue(1, 3);
+    aiRow = randomValue(0, 2);
+    aiCell = randomValue(0, 2);
     console.log(aiRow, aiCell);
     if (checkCell(aiRow, aiCell)) {
       rows[aiRow][aiCell] = aiSymbol;
@@ -107,7 +107,7 @@ const gameLogic = async (
     let validInput = false;
     while (!validInput) {
       userRow = Number(
-        readlineSync.keyInSelect(numbers, '\nChoose a row for your move: ') + 1
+        readlineSync.keyInSelect(numbers, '\nChoose a row for your move: ')
       );
       userCell = readlineSync.keyInSelect(
         numbers,
@@ -163,6 +163,12 @@ const gameLogic = async (
 
   nextRound();
 
+  // const rows = [
+  //   ['_', '_', '_'],
+  //   ['_', '_', '_'],
+  //   ['_', '_', '_'],
+  // ];
+
   // checks for win condition on board
   const winCheck = (
     rows: any[][],
@@ -171,18 +177,18 @@ const gameLogic = async (
   ): boolean => {
     const winningCombinations = [
       // horizontal
+      [rows[0][0], rows[0][1], rows[0][2]],
       [rows[1][0], rows[1][1], rows[1][2]],
       [rows[2][0], rows[2][1], rows[2][2]],
-      [rows[3][0], rows[3][1], rows[3][2]],
 
       // vertical
-      [rows[1][0], rows[2][0], rows[3][0]],
-      [rows[1][1], rows[2][1], rows[3][1]],
-      [rows[1][2], rows[2][2], rows[3][2]],
+      [rows[0][0], rows[1][0], rows[2][0]],
+      [rows[0][1], rows[1][1], rows[2][1]],
+      [rows[0][2], rows[1][2], rows[2][2]],
 
       // diagonal
-      [rows[1][0], rows[2][1], rows[3][2]],
-      [rows[1][2], rows[2][1], rows[3][0]],
+      [rows[0][0], rows[1][1], rows[2][2]],
+      [rows[0][2], rows[1][1], rows[2][0]],
     ];
     for (const combination of winningCombinations) {
       if (

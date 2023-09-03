@@ -16,11 +16,12 @@ const ascii = `
 +--------------+
 \n`;
 
-const guessNumberRules = (username) => {
+const guessNumberRules = (username: string): void => {
   console.clear();
   console.log(
     boxen(
-      ascii`Random number is generated in area you choose.\nThe amount of attempts is proportionally to possible numbers area.\nFor each attempt, you will receive a hint (lower, higher).\n\nGood Luck, ${username}!`,
+      ascii +
+        `Random number is generated in area you choose.\nThe amount of attempts is proportionally to possible numbers area.\nFor each attempt, you will receive a hint (lower, higher).\n\nGood Luck, ${username}!`,
       {
         title: 'Guess the Number',
         textAlignment: 'center',
@@ -36,19 +37,19 @@ const guessNumberRules = (username) => {
   }
 };
 
-const guessNumber = async (username) => {
+const guessNumber = async (username: string) => {
   await delay(1000);
   console.clear();
-  const minValue = readlineSync.question(
-    'Enter the smallest number for the game: '
+  const minValue = Number(
+    readlineSync.question('Enter the smallest number for the game: ')
   );
-  const maxValue = readlineSync.question(
-    'Enter the largest number for the game: '
+  const maxValue = Number(
+    readlineSync.question('Enter the largest number for the game: ')
   );
   console.clear();
-  const goalNumber = randomValue(minValue, maxValue);
+  const goalNumber: number = randomValue(minValue, maxValue);
   // console.log(goalNumber); <- uncomment to debug goal number value in-game
-  let freeAttempts = generateAttempts(minValue, maxValue);
+  let freeAttempts: number = generateAttempts(minValue, maxValue);
   let usedAttempts = 0;
   let userinput = null;
 

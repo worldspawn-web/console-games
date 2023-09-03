@@ -7,7 +7,7 @@ import madLibsRules from '../src/madLibs.js';
 import ticTacToeRules from '../src/tictactoe.js';
 import hangmanRules from '../src/hangman.js';
 
-const mainMenu = (username) => {
+const mainMenu = (username: string) => {
   console.clear();
   console.log(
     boxen(

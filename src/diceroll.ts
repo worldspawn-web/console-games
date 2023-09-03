@@ -1,23 +1,29 @@
 import boxen from 'boxen';
-import Image from 'ascii-art-image';
+// import Image from 'ascii-art-image';
 
 import { randomCubes } from './utils/generators.js';
 import mainMenu from '../bin/main.js';
 import { gameStarts, gameEnds, readyChecker } from './utils/readyChecker.js';
 import delay from './utils/delay.js';
 
-const diceGameRules = (username) => {
+const diceGameRules = (username: string) => {
   console.clear();
+
   //
-  const diceImg = new Image({
-    filepath: 'img/diceroll.png',
-    alphabet: 'binary',
-    width: 60,
-    height: 60,
-  });
-  diceImg.write(function (err, rendered) {
-    console.log(rendered);
-  });
+  //  THIS PACKAGE IS UNSUPPORTED BY TYPESCRIPT
+  //  IN ORDER TO MAKE IT WORK, I WILL HAVE TO RE-CODE IT WITH ANOTHER PACKAGE
+  //  SO IT'S WORK IN PROGRESS (WIP)
+  //
+  //
+  // const diceImg = new Image({
+  //   filepath: 'img/diceroll.png',
+  //   alphabet: 'binary',
+  //   width: 60,
+  //   height: 60,
+  // });
+  // diceImg.write(function (err, rendered) {
+  //   console.log(rendered);
+  // });
   //
   console.log(
     boxen(
@@ -35,9 +41,9 @@ const diceGameRules = (username) => {
   }, 2500);
 };
 
-const diceGame = async (username) => {
-  const userscore = randomCubes();
-  const AIscore = randomCubes();
+const diceGame = async (username: string) => {
+  const userscore: number = randomCubes();
+  const AIscore: number = randomCubes();
 
   await delay(1000);
   console.clear();

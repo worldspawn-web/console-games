@@ -7,7 +7,9 @@ import madLibsRules from '../src/madLibs.js';
 import ticTacToeRules from '../src/tictactoe.js';
 import hangmanRules from '../src/hangman.js';
 
-const mainMenu = (username: string) => {
+import { Username } from '../types/username.js';
+
+const mainMenu = (username: Username) => {
   console.clear();
   console.log(
     boxen(
@@ -20,7 +22,7 @@ const mainMenu = (username: string) => {
     )
   );
 
-  const userChoice = readlineSync.question(
+  const userChoice: string = readlineSync.question(
     `\nWhat is your choice, ${username}?\n`
   );
 

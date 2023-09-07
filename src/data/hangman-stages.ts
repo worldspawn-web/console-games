@@ -2,6 +2,8 @@ import clc from 'cli-color';
 
 import { randomValue } from '../utils/generators.js';
 
+import { Username } from '../../types/username.js';
+
 // const hangmanStages = {
 //     // hangman visualized stages will be there...
 
@@ -34,7 +36,7 @@ const getThemeWord = (number: number): string => {
 
 const gameOver = (
   gameStatus: string,
-  username: string,
+  username: Username,
   goalWord: string
 ): void => {
   console.clear();

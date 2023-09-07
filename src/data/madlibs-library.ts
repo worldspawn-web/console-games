@@ -10,9 +10,8 @@ const getStorylines = (): string => {
     'LAN Internet Cafe',
   ];
   let output = `${clc.yellow('Available storylines:')}\n`;
-  for (let i = 0; i < storylines.length; i += 1) {
+  for (let i = 0; i < storylines.length; i += 1)
     output += `${i + 1}. ${storylines[i]}\n`;
-  }
   return output;
 };
 

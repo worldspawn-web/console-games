@@ -20,9 +20,8 @@ const hangmanThemes = [
 // chooser
 const getThemesList = (): string => {
   let output = `${clc.yellow('Available themes:')}\n`;
-  for (let i = 0; i < hangmanThemes.length; i += 1) {
+  for (let i = 0; i < hangmanThemes.length; i += 1)
     output += `${i + 1}. ${hangmanThemes[i]}\n`;
-  }
   return output;
 };
 
@@ -62,9 +61,7 @@ const isValidLetter = (letterSuggest: string): boolean =>
 const containCheck = (letterSuggest: string, goalWord: string): boolean => {
   const arr = goalWord.split('');
   for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i] === letterSuggest.toLowerCase()) {
-      return true;
-    }
+    if (arr[i] === letterSuggest.toLowerCase()) return true;
   }
   return false;
 };
@@ -77,33 +74,23 @@ const correctLetter = (
   const arr = goalWord.split('');
   let hiddenIndex = [];
   for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i] === letterSuggest.toLowerCase()) {
-      hiddenIndex.push(i);
-    }
+    if (arr[i] === letterSuggest.toLowerCase()) hiddenIndex.push(i);
   }
   const hiddenArr = goalWordHidden.split('');
-  for (let i = 0; i < hiddenIndex.length; i += 1) {
+  for (let i = 0; i < hiddenIndex.length; i += 1)
     hiddenArr[hiddenIndex[i]] = letterSuggest;
-  }
   return hiddenArr.join('');
 };
 
 const hideWord = (word: string): string => {
   const replacer = '_';
   const arr = [];
-  for (let i = 0; i < word.length; i += 1) {
-    arr.push(replacer);
-  }
+  for (let i = 0; i < word.length; i += 1) arr.push(replacer);
   return arr.join('');
 };
 
-const isThemeValid = (number: number): boolean => {
-  if (hangmanThemes[number]) {
-    return true;
-  } else {
-    return false;
-  }
-};
+const isThemeValid = (number: number): boolean =>
+  hangmanThemes[number] ? true : false;
 
 const hangmanWords: string[][][] = [
   [

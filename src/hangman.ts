@@ -17,6 +17,8 @@ import {
   gameOver,
 } from './data/hangman-stages.js';
 
+import { Username } from '../types/username.js';
+
 const ascii = `
  +---+
  |   |
@@ -27,7 +29,7 @@ const ascii = `
 =========
 \n`;
 
-const hangmanRules = async (username: string) => {
+const hangmanRules = async (username: Username) => {
   console.clear();
   console.log(
     boxen(
@@ -46,7 +48,7 @@ const hangmanRules = async (username: string) => {
   }
 };
 
-const preHangman = async (username: string) => {
+const preHangman = async (username: Username) => {
   console.clear();
   const themes = getThemesList();
   console.log(themes);
@@ -62,7 +64,7 @@ const preHangman = async (username: string) => {
   }
 };
 
-const startHangman = async (username: string, userThemeNum: number) => {
+const startHangman = async (username: Username, userThemeNum: number) => {
   console.clear();
   const themeName: string = getThemeName(userThemeNum);
   console.log(
@@ -100,11 +102,9 @@ const startHangman = async (username: string, userThemeNum: number) => {
     }
   }
 
-  if (depressionLevel === 5) {
-    gameOver('fail', username, goalWord);
-  } else {
-    gameOver('success', username, goalWord);
-  }
+  depressionLevel === 5
+    ? gameOver('fail', username, goalWord)
+    : gameOver('success', username, goalWord);
 };
 
 export default hangmanRules;

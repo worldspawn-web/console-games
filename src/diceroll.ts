@@ -6,7 +6,9 @@ import mainMenu from '../bin/main.js';
 import { gameStarts, gameEnds, readyChecker } from './utils/readyChecker.js';
 import delay from './utils/delay.js';
 
-const diceGameRules = (username: string) => {
+import { Username } from '../types/username.js';
+
+const diceGameRules = (username: Username) => {
   console.clear();
 
   //
@@ -41,7 +43,7 @@ const diceGameRules = (username: string) => {
   }, 2500);
 };
 
-const diceGame = async (username: string) => {
+const diceGame = async (username: Username) => {
   const userscore: number = randomCubes();
   const AIscore: number = randomCubes();
 

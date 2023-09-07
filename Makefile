@@ -6,3 +6,6 @@ eslint:
 
 install:
 	npm ci
+
+build:
+	npx tsc

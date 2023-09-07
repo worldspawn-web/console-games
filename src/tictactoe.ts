@@ -7,6 +7,8 @@ import delay from './utils/delay.js';
 import { gameStarts, gameEnds, readyChecker } from './utils/readyChecker.js';
 import { randomValue } from './utils/generators.js';
 
+import { Username } from '../types/username.js';
+
 const gameBoard = `
 X | O | O 
 ---+---+---
@@ -15,7 +17,7 @@ O | X | X
 O | X | O 
 \n`;
 
-const ticTacToeRules = async (username: string) => {
+const ticTacToeRules = async (username: Username) => {
   console.clear();
   console.log(
     boxen(
@@ -38,7 +40,7 @@ const ticTacToeRules = async (username: string) => {
   }
 };
 
-const startTicTacToe = async (username: string) => {
+const startTicTacToe = async (username: Username) => {
   console.clear();
 
   await delay(1500);
@@ -55,7 +57,7 @@ const startTicTacToe = async (username: string) => {
 const gameLogic = async (
   userSymbol: string,
   aiSymbol: string,
-  username: string
+  username: Username
 ) => {
   // temp field TODO: change to a better solution
   const numbers = ['1', '2', '3'];
@@ -149,7 +151,7 @@ const gameLogic = async (
     // win/lose check
     if (winCheck(rows, userSymbol, aiSymbol)) {
       console.clear();
-      const winner: string = aiStatus ? 'AI' : username;
+      const winner: Username = aiStatus ? 'AI' : username;
       console.log(
         `Congratulations, ${winner}!\nYou have beaten AI in just ${clc.green(
           userMovesCounter

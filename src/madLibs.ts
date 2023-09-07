@@ -6,7 +6,9 @@ import mainMenu from '../bin/main.js';
 import { getStory, getStorylines } from './data/madlibs-library.js';
 import { readyChecker, gameEnds, gameStarts } from './utils/readyChecker.js';
 
-const madLibsRules = (username: string) => {
+import { Username } from '../types/username.js';
+
+const madLibsRules = (username: Username) => {
   console.clear();
   console.log(
     boxen(
@@ -22,7 +24,7 @@ const madLibsRules = (username: string) => {
   }
 };
 
-const startMadLib = (username: string) => {
+const startMadLib = (username: Username) => {
   console.clear();
   console.log(getStorylines());
   const storyNumber: number = Number(

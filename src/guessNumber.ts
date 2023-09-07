@@ -7,6 +7,8 @@ import { failureMsg, successMsg } from './utils/colorMsg.js';
 import { readyChecker, gameEnds, gameStarts } from './utils/readyChecker.js';
 import delay from './utils/delay.js';
 
+import { Username } from '../types/username.js';
+
 const ascii = `
 +--------------+
 |              |
@@ -16,7 +18,7 @@ const ascii = `
 +--------------+
 \n`;
 
-const guessNumberRules = (username: string): void => {
+const guessNumberRules = (username: Username): void => {
   console.clear();
   console.log(
     boxen(
@@ -37,13 +39,13 @@ const guessNumberRules = (username: string): void => {
   }
 };
 
-const guessNumber = async (username: string) => {
+const guessNumber = async (username: Username) => {
   await delay(1000);
   console.clear();
-  const minValue = Number(
+  const minValue: number = Number(
     readlineSync.question('Enter the smallest number for the game: ')
   );
-  const maxValue = Number(
+  const maxValue: number = Number(
     readlineSync.question('Enter the largest number for the game: ')
   );
   console.clear();
